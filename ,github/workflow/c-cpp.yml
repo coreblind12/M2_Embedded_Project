@@ -1,1 +1,21 @@
+name: C/C++ CI
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install avr-gcc
+      run: sudo apt-get install gcc-avr
+    - name: Install avr-libc
+      run: sudo apt-get install avr-libc gcc-avr
+    - name: make
+      run: make -C Implementation_Codefiles/ all
